@@ -1,0 +1,42 @@
+java泛型
+
+[泛型接口]
+----------------------------------------------------
+实现一个接口的时候，还不明确方法中，操作的数据类型，要等到创建接口实现类对象的时候才去指定泛型的具体数据类型。怎么实现？　　　
+
+
+
+工作流案例
+CreateUserCmd.java
+public class CreateUserCmd extends AbstractWritableIdentityServiceCmd implements Command, Serializable {
+ protected String userId;
+ public CreateUserCmd(String userId) {
+ this.userId = userId;
+ }
+ protected User executeCmd(CommandContext commandContext) {
+ return commandContext
+ .getWritableIdentityProvider()
+ .createNewUser(userId);
+ }
+}
+ 
+Command.java 接口文件中有偶一个 方法，需要一个类型，还不知道具体是什么
+ public interface Command {
+ T execute(CommandContext commandContext);
+ }
+
+ 
+
+[泛型类]
+----------------------------------------
+ new ArrayList();
+
+
+[泛型方法]
+-----------------------------------------
+ 为什么要使用泛型方法呢？
+ 因为泛型类要在实例化的时候就指明类型，如果想换一种类型，不得不重新new一次，可能不够灵活；
+ 而泛型方法可以在调用的时候指明类型，更加灵活。
+ 
+ 泛型方法要求的参数是Class类型，而Class.forName()方法的返回值也是Class，因此可以用Class.forName()作为参数
+ 

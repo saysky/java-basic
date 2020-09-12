@@ -1,0 +1,14 @@
+java Runtime.getRuntime().exec 调用系统脚本/命令注意事项
+正确的办法：
+
+linux下：
+
+String[] command = { "/bin/sh", "-c", cmds&nbsp;};
+
+Process ps = Runtime.getRuntime().exec(command&nbsp;);
+
+windows下：
+
+String[] command = { "cmd", "/c", cmds&nbsp;};
+
+Process ps = Runtime.getRuntime().exec(command&nbsp;);

@@ -1,0 +1,28 @@
+[工厂模式的问题]
+简单工厂模式并没有消除那些依赖，只是简单的将它们转移到了工厂类里。
+如果有新的对象增加进来，则我们需要修改工厂类。
+
+【改进】
+Class.forName("cases.case2.factory." + id); 
+跟数据库的驱动一样
+具体的工厂类交由具体类的创建者来实现, 这样扩展更灵活
+
+
+用到内部内的技术点
+Circle 对象中，定义了一个静态工厂类，就是
+
+
+private static class Factory extends ShapeFactory
+{
+ protected Shape create()
+ {
+ return new Circle();
+ }
+}
+
+static{
+ ShapeFactory.addFactory("Circle",new Factory());
+} 
+
+//ShapeFactory类需要是静态的，这也得要求它被使用内部类，
+ 
